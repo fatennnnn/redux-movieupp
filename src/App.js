@@ -11,7 +11,7 @@ export default function App() {
   return (
     <div>
             <Route  exact path='/' component={Home}/>
-            <Route exact path='/:id' component={Description}/>
+            <Route exact path='/:_id' component={Description}/>
 
 
     </div>

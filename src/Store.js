@@ -1,3 +1,11 @@
-import {createStore} from 'redux'
-import movieReducer from './Reducers/Moviereducer'
-export const store=createStore(movieReducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+import {createStore, applyMiddleware,compose} from 'redux'
+import movieReducer from './Reducers/Moviereducer';
+import thunk from 'redux-thunk';
+
+export const store=createStore(movieReducer,
+    
+    compose(
+        applyMiddleware(thunk),
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+      )
+)

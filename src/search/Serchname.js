@@ -8,13 +8,15 @@ import React, { Component } from 'react'
  class Serchname extends Component {
     
         state = {
-          rating: 0
+          rating: {watching:0}
         }
         onStarClick=(nextValue)=> 
-            this.setState({rating: nextValue});
+            this.setState({rating:{watching: nextValue}});
           
           
     render() 
+    // console.log('+++++++++++++++++++'+ this.state.rating.watching)
+
     {
         return (
             
@@ -22,7 +24,7 @@ import React, { Component } from 'react'
             <StarRatingComponent 
           name="rate1" 
           starCount={5}
-          onStarClick={(this.props.handeSearchrate(this.state.rating), this.onStarClick)}
+          onStarClick={this.props.handeSearchrate(this.state.rating.watching), this.onStarClick}
         />
             <input placeholder="search for movie"  type="search" 
             onChange={(e)=>{this.props.handleSearchname(e.target.value)}}/>

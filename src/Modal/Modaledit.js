@@ -11,9 +11,11 @@ import './Modaledit.css'
 class Modaledit extends Component {
 
     state= {show :false,
-        movieimage:"",
+        img:"",
+        rate:"",
+
         moviename:"",
-        rating:""
+        dat:""
   }
      handleClose = () => this.setState({show:false});
      handleShow = () => this.setState({show:true});
@@ -27,10 +29,13 @@ class Modaledit extends Component {
     }
     getMovie=()=>{
       this.setState({ 
-        movieimage:this.props.movieEL.movieimage,
-        rating:this.props.movieEL.rating,
+       img:this.props.movieEL.images.poster,
+       
 
-        moviename:this.props.movieEL.moviename,
+        rate:this.props.movieEL.rating.watching,
+        moviename:this.props.movieEL.title,
+
+        dat:this.props.movieEL.year
       })
     }
     render() {
@@ -45,10 +50,12 @@ class Modaledit extends Component {
           <Modal.Header closeButton>
           </Modal.Header>
           <Modal.Body>
-              <input name="movieimage" placeholder="lien image" value={this.state.movieimage} onChange={this.handleChange}/>
-              <input name="rating" placeholder="rating" value={this.state.rating} onChange={this.handleChange}/>
+              <input name="img" placeholder="lien image" value={this.state.img} onChange={this.handleChange}/>
+              <input name="rate" placeholder="rating" value={this.state.rate} onChange={this.handleChange}/>
 
               <input name="moviename" placeholder="name" value={this.state.moviename} onChange={this.handleChange}/>
+              <input name="dat" placeholder="dat" value={this.state.dat} onChange={this.handleChange}/>
+
 
           </Modal.Body>
           <Modal.Footer>
@@ -56,11 +63,14 @@ class Modaledit extends Component {
               Close
             </Button>
             <Button variant="primary"  onClick={()=>{this.props.handleEdit(
-              this.props.movie.id,
-             {id:this.props.movie.id,
-               movieimage:this.state.movieimage,
-              rating:this.state.rating,
-              moviename: this.state.moviename});
+              this.props.movie._id,
+             {_id:this.props.movie._id,
+              images:{poster:this.state.img},
+              rating:{watching:this.state.rate},
+              title: this.state.moviename,
+              year:this.state.dat
+ 
+            });
               this.handleClose()}}>
 SaveEdit            </Button>
           </Modal.Footer>

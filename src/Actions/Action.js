@@ -1,15 +1,16 @@
-import {ADD_MOVIE,REMO_MOVIE,EDIT_MOVIE,FiltNAME_movie,FiltRATE_movie} from './ActionType'
-export const addFilm = (movieimage,rating,moviename)=>({
+import {ADD_MOVIE,REMO_MOVIE,EDIT_MOVIE,FiltNAME_movie,FiltRATE_movie,FETCH_movie} from './ActionType'
+import axios from 'axios'
+export const addFilm = (movie)=>({
     type:ADD_MOVIE,
-    payload:{id:Date.now(),movieimage,rating,moviename,}
+    payload:movie
 })
-export const remoFilm=(id)=>({
+export const remoFilm=(_id)=>({
     type:REMO_MOVIE,
-    payload:id
+    payload:_id
 })
-export const editFilm=(id,newmovie)=>({
+export const editFilm=(_id,newmovie)=>({
     type:EDIT_MOVIE,
-    payload:{id,newmovie}
+    payload:{_id,newmovie}
 })
 export const filtrenameFilm=(searchname)=>({
     type:FiltNAME_movie,
@@ -19,3 +20,16 @@ export const filtrerateFilm=(rate)=>({
     type:FiltRATE_movie,
     payload:rate
 })
+export const fetchFilm=()=>dispatch=>{
+// axios.GET('https://tv-v2.api-fetch.website/movies/1')
+axios({ method:'get', url:'https://tv-v2.api-fetch.website/movies/1'})
+.then(res=>res.data)
+
+.then(data=>{
+    dispatch({
+        type:FETCH_movie,
+        payload:data
+    })
+    }
+    )
+}

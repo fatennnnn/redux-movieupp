@@ -27,10 +27,7 @@ const movieReducer = (state=initState,action)=>{
               // return {...state,movies:state.movies.concat(action.payload)};
               // return {...state,movies:state.movies.concat(action.payload)};
               // return{...state,movies:[...state.movies,...action.payload]}
-              return{...state,movies:[
-                
-                
-                ...action.payload]}
+              return{...state,movies:[...action.payload]}
              
 
  
